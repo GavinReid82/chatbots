@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AlienBot</title>
+    <!-- Link to external CSS file -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+
+    <script>
+        // Function to handle message sending
+        async function sendMessage() {
+            const user_input = document.getElementById('user_input').value;
+
+            if (user_input.trim() === "") return;  // Don't send empty messages
+
+            // Display the user's message in the chat
+            const chatContainer = document.getElementById('chat');
+            
+            const userMessage = `<div class="user-message">${user_input}</div>`;
+            chatContainer.innerHTML += userMessage;
+
+            // Send the message to the bot and get the response
+            const response = await fetch('/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `user_input=${encodeURIComponent(user_input)}`,
+            }).then(res => res.json());
+
+            // Display the bot's response in the chat
+            const botMessage = `<div class="bot-message">${response.response}</div>`;
+            chatContainer.innerHTML += botMessage;
+
+            // Scroll to the bottom of the chat
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+
+            // Clear the input field
+            document.getElementById('user_input').value = '';
+        }
+
+        // Function to handle "Enter" key press
+        document.addEventListener("DOMContentLoaded", function() {
+            const inputField = document.getElementById('user_input');
+            inputField.addEventListener("keypress", function(event) {
+                if (event.key === "Enter") {
+                    event.preventDefault();  // Prevent form submission if inside a form
+                    sendMessage();  // Call sendMessage when "Enter" is pressed
+                }
+            });
+        });
+    </script>
+
+</head>
+<body>
+    <!-- Add the Navbar from the main website -->
+    <nav id="navbar" class="nav">
+        <ul class="nav-list">
+            <li><a href="https://gavinreid82.github.io/web/index.html">Home</a></li>
+            <li><a href="https://gavinreid82.github.io/web/cv.html">CV_bot</a></li>
+            <li><a href="https://gavinreid82.github.io/web/projects.html">Projects</a></li>
+            <li><a href="https://gavinreid82.github.io/web/about.html">About</a></li>
+            <li><a href="https://gavinreid82.github.io/web/contact.html">Contact</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <!-- Left Panel: Project Description -->
+        <div class="left-panel">
+            <h1>Project Description</h1>
+            <p>
+                Welcome to the AlienBot project! AlienBot is a fun and interactive chatbot that allows users to engage
+                in conversations with an AI modeled after an alien entity. By engaging users with questions about Earth and offering 
+                insights about its alien origins, the chatbot creates a whimsical and interactive conversational experience. You can 
+                test AlienBot by entering text in the input box and hitting Enter or "Send".
+            </p>
+            <p>
+                The bot is built using rule-based logic, where predefined patterns of input are matched with appropriate responses.
+                The core functionality is structured using a Python class that leverages libraries like regex for 
+                pattern matching and random for unpredictable responses. Key features of AlienBot include methods for:
+            </p>
+            <ul>
+                <li>greeting users</li> 
+                <li>responding to their questions about its home planet</li> 
+                <li>explaining its reasons for visiting Earth</li>
+                <li>give further information (when prompted with "tell me more")</li>
+                <li>cubing numbers</li> 
+            </ul>
+            <p>
+                The bot is equipped with a variety of intents, stored as dictionaries of regular expressions, which are used 
+                to identify the user's input and respond accordingly. AlienBot’s simplicity and modularity make it easily extensible, 
+                allowing developers to introduce new intents and responses, expanding the conversational depth and enhancing the 
+                overall experience for users.
+            </p>
+        </div>
+
+        <!-- Right Panel: AlienBot -->
+        <div class="right-panel">
+            <h1>Chat with AlienBot</h1>
+            <div class="chat-container" id="chat">
+                <!-- Messages will be appended here -->
+            </div>
+            <div id="message-input">
+                <input type="text" id="user_input" placeholder="Say something..." />
+                <button onclick="sendMessage()">Send</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

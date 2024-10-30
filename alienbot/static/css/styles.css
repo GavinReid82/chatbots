@@ -1,0 +1,158 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+nav {
+    display: flex !important;
+    justify-content: flex-end; /* Right-align the nav content */
+    flex-direction: row;
+    width: 100%;
+    height: 50px; /* Height of the navbar */
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: var(--green);
+    z-index: 1000; /* Ensure it stays above other content */
+    }
+    
+    nav > ul {
+    display: flex; 
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    align-items: center;
+    padding-inline-start: 0;
+    margin-block: 0;
+    height: 100%;
+    float: right;
+    }
+    
+    nav > ul > li {
+    font-family: sans-serif;
+    margin: 0 0.2rem;
+    padding: 0.2rem;
+    display: block;
+    }
+    
+    nav > ul > li > a {
+        text-decoration: none;
+        color: rgb(90, 90, 90);
+       }
+    
+    nav > ul > li:hover {
+    background-color: var(--gray);;
+    cursor: pointer;
+    }
+  
+  
+    @media (max-width: 768px) {
+      nav > ul {
+        flex-direction: column;
+        align-items: center;
+      }
+    
+      nav {
+        position: relative; /* Prevents navbar from overlapping content */
+      }
+    }
+    
+    a {
+      text-decoration: none;
+      color: rgba(251, 241, 35, 0.86);
+     }
+     
+.container {
+    display: flex !important;
+    flex-direction: row;
+    height: calc(100vh - 30px); /* Full viewport height minus the navbar height */
+}
+
+.left-panel, .right-panel {
+    width: 50% !important;
+    padding: 20px;
+    padding-top: 50px;
+}
+
+.left-panel {
+    background-color: #ededed; /* Light background for the description */
+    box-shadow: inset -2px 0 5px rgba(0, 0, 0, 0.1); /* Divider shadow */
+}
+
+.right-panel {
+    background-color: #ffffff; /* White background for AlienBot */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+h1 {
+    text-align: center;
+}
+
+p {
+    text-align: justify;
+}
+
+.chat-container {
+    flex-grow: 1;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+    height: 80vh; /* Define height for the chat box */
+}
+
+.message {
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 15px;
+    max-width: 80%;
+    word-wrap: break-word;
+    font-size: 16px;
+}
+
+.user-message {
+    background-color: #d1e7dd; /* Light green for user messages */
+    padding: 15px; /* Add padding */
+    margin: 10px 0; /* Add margin */
+    border-radius: 15px; /* Add border radius */
+    align-self: flex-end;
+    text-align: right;
+    margin-left: auto; /* Align user message to the right */
+}
+
+.bot-message {
+    background-color: #f8d7da; /* Light red for bot messages */
+    padding: 15px; /* Add padding */
+    margin: 10px 0; /* Add margin */
+    border-radius: 15px; /* Add border radius */
+    align-self: flex-start;
+    text-align: left;
+    margin-right: auto; /* Align bot message to the left */
+}
+
+#message-input {
+    display: flex;
+    justify-content: space-between;
+}
+
+#user_input {
+    width: 80%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    padding: 10px 15px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #218838;
+}

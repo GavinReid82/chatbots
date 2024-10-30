@@ -1,0 +1,26 @@
+(.venv) (base) gavinreid@MacBook-Air-3 alienbot % python
+Python 3.9.7 | packaged by conda-forge | (default, Sep 29 2021, 19:22:19) 
+[Clang 11.1.0 ] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+>>> from alienbot import AlienBot
+>>> bot = AlienBot()
+>>> bot.get_response("hi")
+"Hello Earthling. What's your name?"
+>>> bot.get_response("gav")
+"Hi Gav, I'm Butterball. I'm not from this planet. Will you help me learn about your planet?"
+>>> bot.get_response("no")
+'Oh well, maybe next time. Have a great Earth day!'
+>>> bot.get_response("What's my name?")
+'Your name is Gav, silly!'
+>>> bot.get_response("What's your name?")
+'My name is Butterball, nice to meet you!'
+>>> bot.get_response("tell me about your planet")
+'I am from Opidipus, the capital of the Wayward Galaxies.'
+>>> bot.get_response("tell me more")
+'My planet is a utopia of diverse organisms and species.'
+>>> bot.get_response("tell me more")
+"That's all I feel comfortable telling you."
+>>> bot.get_response("why did you come here")
+'I see. Can you elaborate? '
+>>> bot.get_response("why are you here")
+'I heard the coffee is good. '
